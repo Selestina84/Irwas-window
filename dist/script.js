@@ -15461,9 +15461,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', function () {
-  Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])(); //tabs('.glazing_slider', '.glazing_block', '.glazing_content', 'active');
-
+  Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider ', '.glazing_block', '.glazing_content', 'active');
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
 });
 
 /***/ }),
@@ -15547,44 +15547,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var tabs = function tabs(headerSelector, tabsSelector, contentSelector, activeClass) {
+var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeClass) {
   var header = document.querySelector(headerSelector),
-      tabs = document.querySelectorAll(tabsSelector),
+      tab = document.querySelectorAll(tabSelector),
       content = document.querySelectorAll(contentSelector);
 
-  function hideTabsContent() {
+  function hideTabContent() {
     content.forEach(function (item) {
-      item.style.display = "none";
+      item.style.display = 'none';
     });
-    tabs.forEach(function (item) {
+    tab.forEach(function (item) {
       item.classList.remove(activeClass);
     });
   }
 
-  ;
-
-  function showTabsContent(i) {
-    content[i].style.display = "block";
-    tabs[i].classList.add(activeClass);
+  function showTabContent() {
+    var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    content[i].style.display = 'block';
+    tab[i].classList.add(activeClass);
   }
 
-  hideTabsContent();
-  showTabsContent(2);
-  header.addEventListener('click', function (_ref) {
-    var target = _ref.target;
+  hideTabContent();
+  showTabContent();
+  header.addEventListener('click', function (e) {
+    var target = e.target;
 
-    if (target && target.classList.contains(tabsSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabsSelector.replace(/\./, ""))) {
-      tabs.forEach(function (item, i) {
-        if (target == item) {
-          console.log(target);
-          showTabsContent(i);
+    if (target && (target.classList.contains(tabSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
+      tab.forEach(function (item, i) {
+        if (target == item || target.parentNode == item) {
+          hideTabContent();
+          showTabContent(i);
         }
-
-        ;
       });
     }
-
-    ;
   });
 };
 
