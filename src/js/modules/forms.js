@@ -1,9 +1,10 @@
-import {closeModal} from "./modals";
+import checkNumInputs from './checkNumInputs';
+import closeModal from './closeModal';
 
 const forms = () => {
   const form = document.querySelectorAll('form'),
-        input = document.querySelectorAll('input'),
-        phoneInput = document.querySelectorAll('input[name = "user_phone"]')
+        input = document.querySelectorAll('input');
+       // modals = document.querySelectorAll('[data-modal]');
 
   const message = {
     loading: "Идет загрузка",
@@ -11,12 +12,7 @@ const forms = () => {
     failure: "Что то пошло не так..."
   };
 
-  phoneInput.forEach(item => {
-    item.addEventListener('input', () =>{
-      item.value = item.value.replace(/\D/, '')
-    })
-
-  })
+  checkNumInputs('input[name = "user_phone"]')
 
   const clearInputs = () => {
     input.forEach(item => item.value = "")
@@ -44,6 +40,11 @@ const forms = () => {
       item.append(statusMessage);
 
       const formData = new FormData(item);
+        if (item.getAttribute('data-calc') === "end") {
+          for (let key in state) {
+              formData.append(key, state[key]);
+          }
+        };
 
       postData('assets/server.php', formData)
         .then(res => {
@@ -54,9 +55,11 @@ const forms = () => {
           statusMessage.textContent = message.failure;
         })
         .finally(() => {
-          clearInputs();
+         // clearInputs();
           setInterval(()=>{
+            form.forEach(item => item.reset())
             statusMessage.remove();
+            closeModal('[data-modal]');
           },5000);
         });
     });

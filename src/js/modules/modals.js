@@ -1,3 +1,4 @@
+import closeModal from './closeModal'
 const modals = () => {
 
   function bindModal(triggerSelector, modalSelector, closeSelector, clickOnEnatherTrigger = true){
@@ -20,12 +21,6 @@ const modals = () => {
         document.body.classList.add('modal-open');
       });
     });
-
-
-    function closeModal(modalSelector) {
-      document.querySelector(modalSelector).style.display ="none";
-      document.body.classList.remove('modal-open')
-    };
 
     closeBtn.addEventListener('click', () => {
       closeModal(modalSelector)
