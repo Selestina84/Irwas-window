@@ -15,22 +15,24 @@ const modals = () => {
       })
     });
 
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = "none";
+    function closeModal(modalSelector) {
+      document.querySelector(modalSelector).style.display ="none";
       document.body.classList.remove('modal-open')
+    };
+
+    closeBtn.addEventListener('click', () => {
+      closeModal(modalSelector)
     });
 
     modal.addEventListener('click', ({target})=> {
       if(target === modal){
-        modal.style.display = "none";
-        document.body.classList.remove('modal-open')
+        closeModal(modalSelector)
       }
     });
 
     document.body.addEventListener('keydown', (e)=> {
       if(e.keyCode === 27){
-        modal.style.display = "none";
-        document.body.classList.remove('modal-open')
+        closeModal(modalSelector)
       }
     });
 
