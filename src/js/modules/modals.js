@@ -5,7 +5,8 @@ const modals = () => {
     const trigger = document.querySelectorAll(triggerSelector),
         modal = document.querySelector(modalSelector),
         closeBtn = document.querySelector(closeSelector),
-        windows = document.querySelectorAll('[data-modal]')
+        windows = document.querySelectorAll('[data-modal]'),
+        scroll = calcScroll();
 
     trigger.forEach(item => {
       item.addEventListener ('click', (e)=>{
@@ -19,24 +20,43 @@ const modals = () => {
 
         modal.style.display = "block";
         document.body.classList.add('modal-open');
+        document.body.style.marginRight = `${scroll}px`;
       });
     });
 
     closeBtn.addEventListener('click', () => {
-      closeModal(modalSelector)
+      closeModal(modalSelector);
+      document.body.style.marginRight = `0px`;
     });
 
     modal.addEventListener('click', ({target})=> {
       if(target === modal && clickOnEnatherTrigger){
-        closeModal(modalSelector)
+        closeModal(modalSelector);
+        document.body.style.marginRight = `0px`;
       }
     });
 
     document.body.addEventListener('keydown', (e)=> {
       if(e.keyCode === 27 && clickOnEnatherTrigger){
-        closeModal(modalSelector)
+        closeModal(modalSelector);
+        document.body.style.marginRight = `0px`;
       }
     });
+
+    function calcScroll() {
+      let div = document.createElement('div');
+
+      div.style.width = '50px';
+      div.style.height = '50px';
+      div.style.overflowY = 'scroll';
+      div.style.visibility = 'hidden';
+
+      document.body.appendChild(div);
+      let scrollWidth = div.offsetWidth - div.clientWidth;
+      div.remove();
+
+      return scrollWidth;
+    }
 
   }
 
