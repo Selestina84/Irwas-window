@@ -2,13 +2,21 @@ import {closeModal} from "./modals";
 
 const forms = () => {
   const form = document.querySelectorAll('form'),
-        input = document.querySelectorAll('input');
+        input = document.querySelectorAll('input'),
+        phoneInput = document.querySelectorAll('input[name = "user_phone"]')
 
   const message = {
     loading: "Идет загрузка",
     success: "Спасибо! Мы свяжемся с вами в ближайшее время!",
     failure: "Что то пошло не так..."
   };
+
+  phoneInput.forEach(item => {
+    item.addEventListener('input', () =>{
+      item.value = item.value.replace(/\D/, '')
+    })
+
+  })
 
   const clearInputs = () => {
     input.forEach(item => item.value = "")
@@ -24,7 +32,7 @@ const forms = () => {
     return await res.text();
   };
 
-  
+
 
   form.forEach(item => {
     item.addEventListener('submit', (e) => {
