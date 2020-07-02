@@ -1,4 +1,5 @@
 import closeModal from './closeModal'
+import calcScroll from './calcScroll'
 const modals = () => {
 
   function bindModal(triggerSelector, modalSelector, closeSelector, clickOnEnatherTrigger = true){
@@ -20,6 +21,7 @@ const modals = () => {
 
         modal.style.display = "block";
         document.body.classList.add('modal-open');
+        console.log(scroll)
         document.body.style.marginRight = `${scroll}px`;
       });
     });
@@ -42,22 +44,6 @@ const modals = () => {
         document.body.style.marginRight = `0px`;
       }
     });
-
-    function calcScroll() {
-      let div = document.createElement('div');
-
-      div.style.width = '50px';
-      div.style.height = '50px';
-      div.style.overflowY = 'scroll';
-      div.style.visibility = 'hidden';
-
-      document.body.appendChild(div);
-      let scrollWidth = div.offsetWidth - div.clientWidth;
-      div.remove();
-
-      return scrollWidth;
-    }
-
   }
 
     function showModalByTime(selector, time){
