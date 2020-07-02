@@ -17959,7 +17959,7 @@ __webpack_require__.r(__webpack_exports__);
 var closeModal = function closeModal(selector) {
   document.querySelectorAll(selector).forEach(function (item) {
     item.style.display = "none";
-    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
   });
 };
 
@@ -18165,7 +18165,7 @@ var modals = function modals() {
           item.style.display = 'none';
         });
         modal.style.display = "block";
-        document.body.classList.add('modal-open');
+        document.body.style.overflow = 'hidden';
         document.body.style.marginRight = "".concat(scroll, "px");
       });
     });

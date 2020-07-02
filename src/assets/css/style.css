@@ -1330,6 +1330,9 @@ textarea:focus {
     margin-right: 0;
     margin-bottom: 2rem;
   }
+  .timer1 {
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1480,6 +1483,9 @@ textarea:focus {
     font-size: 1.4rem;
     color: #0089cd;
     text-decoration: underline;
+  }
+  .timer1 {
+    margin: 0 auto;
   }
 }
 
@@ -1819,6 +1825,9 @@ textarea:focus {
 
   .popup_calc_profile_button {
     padding: 1rem 5rem;
+  }
+  .timer1 {
+    margin: 0 auto;
   }
 }
 
