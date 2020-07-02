@@ -33,7 +33,6 @@ const forms = () => {
   form.forEach(item => {
     item.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log((e.target.parentNode).parentNode)
 
       let statusMessage = document.createElement('div');
       statusMessage.classList.add('status');
@@ -48,7 +47,7 @@ const forms = () => {
 
       postData('assets/server.php', formData)
         .then(res => {
-          console.log(res);
+          console.log(res)
           statusMessage.textContent = message.success;
         })
         .catch(() => {

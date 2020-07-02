@@ -21,7 +21,6 @@ const modals = () => {
 
         modal.style.display = "block";
         document.body.classList.add('modal-open');
-        console.log(scroll)
         document.body.style.marginRight = `${scroll}px`;
       });
     });
